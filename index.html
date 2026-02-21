@@ -224,13 +224,13 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 <!-- NAV -->
 <nav class="nav" id="nav"><div class="ni">
 <a href="#hero" class="nl"><div class="nl-i">CBMC</div><div><div class="nl-t">김해한마음지회</div><div class="nl-s">Gimhae Hanmaeum</div></div></a>
-<ul class="nk"><li><a href="#forum" data-i="nav1">조찬포럼</a></li><li><a href="#net" data-i="nav2">네트워크</a></li><li><a href="#resources">자료실</a></li><li><a href="#gal" data-i="nav3">갤러리</a></li><li><a href="#plan" data-i="nav4">운영계획</a></li><li><a href="#map" data-i="nav5">오시는 길</a></li></ul>
+<ul class="nk"><li><a href="#forum" data-i="nav1">조찬포럼</a></li><li><a href="#net" data-i="nav2">네트워크</a></li><li><a href="#resources">자료실</a></li><li><a href="#vip-invite">VIP초대</a></li><li><a href="#nurture">양육</a></li><li><a href="#plan" data-i="nav4">운영계획</a></li><li><a href="#contact-form" class="nj">문의하기</a></li></ul>
 <div class="lang-sw" id="langSw"><button class="lang-btn on" data-lang="ko">🇰🇷 한국어</button><button class="lang-btn" data-lang="en">🇺🇸 ENG</button><button class="lang-btn" data-lang="vi">🇻🇳 Tiếng Việt</button></div>
 <button class="mb" onclick="tmm()" aria-label="메뉴 열기"><span></span><span></span><span></span></button>
 </div></nav>
 
 <div class="mm" id="mm"><button class="mmx" onclick="tmm()" aria-label="메뉴 닫기">✕</button>
-<a href="#forum" onclick="tmm()" data-i="nav1">조찬포럼</a><a href="#net" onclick="tmm()" data-i="nav2">네트워크</a><a href="#resources" onclick="tmm()">📚 자료실</a><a href="#gal" onclick="tmm()" data-i="nav3">갤러리</a><a href="#plan" onclick="tmm()" data-i="nav4">운영계획</a><a href="#map" onclick="tmm()" data-i="nav5">오시는 길</a>
+<a href="#forum" onclick="tmm()" data-i="nav1">조찬포럼</a><a href="#net" onclick="tmm()" data-i="nav2">네트워크</a><a href="#resources" onclick="tmm()">📚 자료실</a><a href="#vip-invite" onclick="tmm()">🤝 VIP 초대</a><a href="#nurture" onclick="tmm()">🌱 양육 과정</a><a href="#prayer-partner" onclick="tmm()">🙏 기도파트너</a><a href="#manna" onclick="tmm()">📖 월요만나</a><a href="#glocal" onclick="tmm()">🌏 글로컬</a><a href="#plan" onclick="tmm()" data-i="nav4">운영계획</a><a href="#contact-form" onclick="tmm()">📝 문의하기</a>
 <div style="display:flex;gap:6px;margin-top:1rem"><button class="lang-btn on" data-lang="ko" onclick="switchLang('ko');tmm()">🇰🇷</button><button class="lang-btn" data-lang="en" onclick="switchLang('en');tmm()">🇺🇸</button><button class="lang-btn" data-lang="vi" onclick="switchLang('vi');tmm()">🇻🇳</button></div></div>
 
 <!-- HERO -->
@@ -623,7 +623,7 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 <div style="padding:1.2rem 1.5rem;background:linear-gradient(135deg,var(--nd),#1a4b7a);color:var(--w);display:flex;justify-content:space-between;align-items:center">
 <div><h3 style="font-size:1rem;font-weight:700;margin-bottom:.2rem">CBMC 김해한마음지회 회원 명부</h3>
 <p style="font-size:.72rem;opacity:.6">이름 · 대표 · 기업(직장)</p></div>
-<span style="padding:8px 20px;border-radius:24px;background:rgba(138,134,128,.4);color:var(--w);font-size:.75rem;font-weight:600;display:inline-flex;align-items:center;gap:6px;cursor:default">📄 PDF 준비 중 (Coming Soon)</span>
+<a href="cbmc-members.pdf" target="_blank" rel="noopener noreferrer" style="padding:8px 20px;border-radius:24px;background:var(--g);color:var(--w);font-size:.75rem;font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:all .3s ease" onmouseover="this.style.background='var(--gl)'" onmouseout="this.style.background='var(--g)'">📄 PDF 열기</a>
 </div>
 <table style="width:100%;border-collapse:collapse;font-size:.82rem">
 <thead><tr style="background:#f0ede6"><th style="padding:.7rem 1rem;text-align:left;font-weight:700;color:var(--nd);border-bottom:2px solid var(--g2)">이름</th><th style="padding:.7rem 1rem;text-align:left;font-weight:700;color:var(--nd);border-bottom:2px solid var(--g2)">직함</th><th style="padding:.7rem 1rem;text-align:left;font-weight:700;color:var(--nd);border-bottom:2px solid var(--g2)">기업(직장)</th></tr></thead>
@@ -636,33 +636,40 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 <tr style="border-bottom:1px solid var(--g1);background:#faf9f6"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">서재찬</td><td style="padding:.6rem 1rem;color:var(--g7)">강사</td><td style="padding:.6rem 1rem;color:var(--g5)">반석인더스트리즈 대표</td></tr>
 <tr><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">한진준</td><td style="padding:.6rem 1rem;color:var(--g7)">고문</td><td style="padding:.6rem 1rem;color:var(--g5)">엘림G선교회 대표</td></tr>
 </tbody></table>
-<div style="padding:.8rem 1rem;background:#f0ede6;text-align:center;font-size:.7rem;color:var(--g5)">※ 상세 명부는 PDF를 통해 확인하실 수 있습니다. <code>cbmc-members.pdf</code> 파일을 교체하시면 됩니다.</div>
+<div style="padding:.6rem 1rem .2rem;background:#f0ede6;text-align:center;font-size:.68rem;color:var(--g);font-weight:700;letter-spacing:1px">일반 회원</div>
+<table style="width:100%;border-collapse:collapse;font-size:.82rem"><tbody>
+<tr style="border-bottom:1px solid var(--g1)"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">권종희</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">여명라이팅(주)</td></tr>
+<tr style="border-bottom:1px solid var(--g1);background:#faf9f6"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">이성덕</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">-</td></tr>
+<tr style="border-bottom:1px solid var(--g1)"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">임성택</td><td style="padding:.6rem 1rem;color:var(--g7)">병원장</td><td style="padding:.6rem 1rem;color:var(--g5)">자연힐 한방병원</td></tr>
+<tr style="border-bottom:1px solid var(--g1);background:#faf9f6"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">장진수</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">메타글로벌 파트너스(주)</td></tr>
+<tr style="border-bottom:1px solid var(--g1)"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">이춘호</td><td style="padding:.6rem 1rem;color:var(--g7)">센터장</td><td style="padding:.6rem 1rem;color:var(--g5)">-</td></tr>
+<tr style="border-bottom:1px solid var(--g1);background:#faf9f6"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">지해수</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">-</td></tr>
+<tr style="border-bottom:1px solid var(--g1)"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">한석영</td><td style="padding:.6rem 1rem;color:var(--g7)">목사</td><td style="padding:.6rem 1rem;color:var(--g5)">일터사역자, 인제대/창원대 교수</td></tr>
+<tr style="border-bottom:1px solid var(--g1);background:#faf9f6"><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">강익중</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">-</td></tr>
+<tr><td style="padding:.6rem 1rem;color:var(--nd);font-weight:600">노가영</td><td style="padding:.6rem 1rem;color:var(--g7)">대표</td><td style="padding:.6rem 1rem;color:var(--g5)">-</td></tr>
+</tbody></table>
+<div style="padding:.8rem 1rem;background:#f0ede6;text-align:center;font-size:.7rem;color:var(--g5)">총 16명 | 상세 명부는 PDF를 통해 확인하실 수 있습니다.</div>
 </div>
 </div></section>
 
 <!-- NEW MEMBERS 새 회원 -->
 <section style="background:linear-gradient(135deg,#0a1f35 0%,#122d4a 100%);padding:50px 2.5rem;color:var(--w)" id="new-members"><div class="si">
 <div class="ct sh rv"><span class="sl" style="color:var(--gl)">Welcome New Members</span><h2 class="st" style="color:var(--w);font-size:1.4rem">새 회원을 환영합니다</h2><p class="sd cm" style="color:rgba(255,255,255,.5);font-size:.82rem">비즈니스 세계에서 하나님 나라를 함께 세워갈 새로운 동역자들입니다.</p></div>
-<div style="display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;max-width:720px;margin-left:auto;margin-right:auto">
-
+<div style="display:flex;justify-content:center;gap:.8rem;flex-wrap:wrap;margin-top:1.2rem;max-width:900px;margin-left:auto;margin-right:auto">
 <div style="background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);transition:all .3s ease;width:160px;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(184,137,46,.35)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.08)'">
-<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new01.jpg" alt="새 회원" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
-<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">새 회원명</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">소속</p></div></div>
-
+<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new01.jpg" alt="권종희 대표" style="width:100%;height:100%;object-fit:cover;object-position:center top" loading="lazy"></div>
+<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">권종희 대표</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">여명라이팅(주)</p></div></div>
 <div style="background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);transition:all .3s ease;width:160px;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(184,137,46,.35)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.08)'">
-<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new02.jpg" alt="새 회원" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
-<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">새 회원명</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">소속</p></div></div>
-
+<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new02.jpg" alt="임성택 병원장" style="width:100%;height:100%;object-fit:cover;object-position:center top" loading="lazy"></div>
+<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">임성택 병원장</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">자연힐 한방병원</p></div></div>
 <div style="background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);transition:all .3s ease;width:160px;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(184,137,46,.35)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.08)'">
-<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new03.jpg" alt="새 회원" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
-<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">새 회원명</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">소속</p></div></div>
-
+<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new03.jpg" alt="장진수 대표" style="width:100%;height:100%;object-fit:cover;object-position:center top" loading="lazy"></div>
+<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">장진수 대표</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">메타글로벌 파트너스(주)</p></div></div>
 <div style="background:rgba(255,255,255,.05);border-radius:10px;border:1px solid rgba(255,255,255,.08);transition:all .3s ease;width:160px;overflow:hidden" onmouseover="this.style.transform='translateY(-3px)';this.style.borderColor='rgba(184,137,46,.35)'" onmouseout="this.style.transform='';this.style.borderColor='rgba(255,255,255,.08)'">
-<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new04.jpg" alt="새 회원" style="width:100%;height:100%;object-fit:cover;object-position:center top"></div>
-<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">새 회원명</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">소속</p></div></div>
-
+<div style="aspect-ratio:1/1;overflow:hidden;background:linear-gradient(135deg,rgba(184,137,46,.15),rgba(184,137,46,.03))"><img src="img-new04.jpg" alt="한석영 목사" style="width:100%;height:100%;object-fit:cover;object-position:center top" loading="lazy"></div>
+<div style="padding:.6rem .7rem"><div style="font-size:.5rem;letter-spacing:1.5px;color:var(--gl);font-weight:600;text-transform:uppercase;margin-bottom:.15rem">New</div><h4 style="font-size:.78rem;font-weight:600;color:var(--w);margin-bottom:.1rem">한석영 목사</h4><p style="font-size:.62rem;color:rgba(255,255,255,.4);line-height:1.4">인제대/창원대 교수</p></div></div>
 </div>
-<p style="text-align:center;margin-top:.8rem;font-size:.65rem;color:rgba(255,255,255,.25)">※ img-new01.jpg ~ img-new04.jpg 교체 가능</p>
+<p style="text-align:center;margin-top:.8rem;font-size:.65rem;color:rgba(255,255,255,.25)">※ 사진은 img-new01~04.jpg 교체 가능</p>
 </div></section>
 
 <!-- 2026 운영계획 -->
@@ -733,6 +740,179 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 </div>
 </div></div></section>
 
+<!-- VIP 초대 페이지 -->
+<section style="background:linear-gradient(135deg,#fff8e1,#fff);padding:70px 2.5rem" id="vip-invite"><div class="si">
+<div class="ct sh rv"><span class="sl" style="color:var(--g)">VIP Invitation</span><h2 class="st">조찬포럼에 초대합니다</h2><p class="sd cm">당신의 소중한 지인을 CBMC 토요조찬포럼에 초대해 주세요.</p></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:2rem;max-width:900px;margin:0 auto" class="rv">
+<div style="background:var(--w);border-radius:16px;padding:2rem;border:2px solid rgba(184,137,46,.2);box-shadow:0 4px 20px rgba(0,0,0,.06)">
+<div style="font-size:1.4rem;margin-bottom:1rem;text-align:center">🤝</div>
+<h3 style="font-size:1.05rem;font-weight:800;color:var(--nd);text-align:center;margin-bottom:1rem">VIP 초대 안내</h3>
+<div style="font-size:.82rem;color:var(--g7);line-height:1.9">
+<p><b style="color:var(--g)">누구를?</b> 크리스천 비즈니스맨, 전문직 종사자, 구도자</p>
+<p><b style="color:var(--g)">언제?</b> 매주 토요일 오전 7:00 ~ 9:00</p>
+<p><b style="color:var(--g)">어디서?</b> 반석인더스트리즈(주) — 김해시 장유로 167-23</p>
+<p><b style="color:var(--g)">무엇을?</b> 조찬(아침식사) + 말씀 강의 + 소그룹 나눔 + 기도</p>
+<p style="margin-top:.8rem;padding:.6rem;background:rgba(184,137,46,.06);border-radius:8px;font-size:.75rem;color:var(--g5)">첫 방문 시 조찬비 무료 | 복장 자유 | 종교 불문 환영</p>
+</div>
+</div>
+<div style="background:linear-gradient(135deg,var(--nd),#1a4b7a);border-radius:16px;padding:2rem;color:var(--w)">
+<div style="font-size:1.4rem;margin-bottom:1rem;text-align:center">📋</div>
+<h3 style="font-size:1.05rem;font-weight:800;text-align:center;margin-bottom:1rem">6P 전도 프로세스</h3>
+<div style="font-size:.82rem;line-height:2.2;color:rgba(255,255,255,.8)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P1</span> <b>Pray</b> — VIP를 위한 중보 기도</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P2</span> <b>Plan</b> — 초대 계획 수립</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P3</span> <b>Prepare</b> — 관계 형성 및 초대 준비</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P4</span> <b>Present</b> — 포럼 초대 및 복음 제시</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P5</span> <b>Preserve</b> — 후속 관리와 양육</div>
+<div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:50%;background:rgba(184,137,46,.3);display:inline-flex;align-items:center;justify-content:center;font-size:.65rem;font-weight:800;color:var(--gl);flex-shrink:0">P6</span> <b>Praise</b> — 감사와 보고</div>
+</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:1.5rem" class="rv">
+<a href="tel:010-3844-4422" style="padding:12px 28px;border-radius:28px;background:var(--g);color:var(--w);font-size:.85rem;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all .3s" onmouseover="this.style.background='var(--gl)'" onmouseout="this.style.background='var(--g)'">📞 VIP 초대 문의 (회장 010-3844-4422)</a>
+</div>
+</div></section>
+
+<!-- 양육 과정 -->
+<section style="background:var(--w);padding:70px 2.5rem" id="nurture"><div class="si">
+<div class="ct sh rv"><span class="sl">Nurture & Growth</span><h2 class="st">양육 과정 — 3단계 성장 로드맵</h2><p class="sd cm">CBMC는 전도에서 양육, 리더십 개발까지 체계적인 성장 과정을 제공합니다.</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;max-width:960px;margin:0 auto" class="rv">
+<div style="background:linear-gradient(135deg,#e8f5e9,#fff);border-radius:16px;padding:1.8rem;border:2px solid rgba(76,175,80,.2);text-align:center">
+<div style="width:56px;height:56px;border-radius:50%;background:rgba(76,175,80,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-size:1.3rem">🌱</div>
+<div style="font-size:.6rem;letter-spacing:2px;color:#4caf50;font-weight:700;margin-bottom:.3rem">STEP 1</div>
+<h3 style="font-size:1rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">전도 · 초청</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.7">6P 전도전략으로 VIP 초대<br>조찬포럼 참석<br>복음 제시와 영접 기도</p>
+</div>
+<div style="background:linear-gradient(135deg,#e3f2fd,#fff);border-radius:16px;padding:1.8rem;border:2px solid rgba(33,150,243,.2);text-align:center">
+<div style="width:56px;height:56px;border-radius:50%;background:rgba(33,150,243,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-size:1.3rem">📖</div>
+<div style="font-size:.6rem;letter-spacing:2px;color:#2196f3;font-weight:700;margin-bottom:.3rem">STEP 2</div>
+<h3 style="font-size:1rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">양육 · 훈련</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.7">소그룹 성경공부<br>기도 파트너 매칭<br>비즈니스 원칙 12모듈<br>간증 작성 훈련</p>
+</div>
+<div style="background:linear-gradient(135deg,#fff3e0,#fff);border-radius:16px;padding:1.8rem;border:2px solid rgba(255,152,0,.2);text-align:center">
+<div style="width:56px;height:56px;border-radius:50%;background:rgba(255,152,0,.12);display:flex;align-items:center;justify-content:center;margin:0 auto .8rem;font-size:1.3rem">👑</div>
+<div style="font-size:.6rem;letter-spacing:2px;color:#ff9800;font-weight:700;margin-bottom:.3rem">STEP 3</div>
+<h3 style="font-size:1rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">리더십 · 확산</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.7">소그룹 리더 훈련<br>VIP 전도자 파송<br>신규 지회 개척 참여<br>글로컬 사역 확장</p>
+</div>
+</div>
+</div></section>
+
+<!-- 기도 파트너 & 회원 상호 책임 시스템 -->
+<section style="background:linear-gradient(135deg,#0a1f35,#1a4b7a);padding:70px 2.5rem;color:var(--w)" id="prayer-partner"><div class="si">
+<div class="ct sh rv"><span class="sl" style="color:var(--gl)">Prayer & Accountability</span><h2 class="st" style="color:var(--w)">기도 파트너 · 상호 책임 시스템</h2><p class="sd cm" style="color:rgba(255,255,255,.55)">형제 간 영적 유대와 상호 책임을 통해 하나님 나라를 함께 세워갑니다.</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem" class="rv">
+<div style="padding:1.8rem;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">
+<div style="font-size:1.3rem;margin-bottom:.8rem">🙏</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--w);margin-bottom:.5rem">기도 파트너 매칭</h3>
+<p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8">2인 1조 기도 파트너를 매칭하여 매주 서로의 사업과 가정을 위해 중보 기도합니다. 분기마다 파트너를 교체하여 전 회원이 연결됩니다.</p>
+<div style="margin-top:.8rem;padding:.5rem .8rem;background:rgba(184,137,46,.12);border-radius:8px;font-size:.68rem;color:var(--gl)">매주 1회 전화/문자 기도 나눔</div>
+</div>
+<div style="padding:1.8rem;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">
+<div style="font-size:1.3rem;margin-bottom:.8rem">📋</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--w);margin-bottom:.5rem">VIP 카드 시스템</h3>
+<p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8">각 회원이 3명의 VIP(전도 대상자)를 기도 카드에 기록하고, 매주 포럼에서 VIP를 위한 합심 기도를 드립니다. 초대 결과를 매월 보고합니다.</p>
+<div style="margin-top:.8rem;padding:.5rem .8rem;background:rgba(184,137,46,.12);border-radius:8px;font-size:.68rem;color:var(--gl)">회원 1인당 VIP 3명 등록</div>
+</div>
+<div style="padding:1.8rem;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08)">
+<div style="font-size:1.3rem;margin-bottom:.8rem">✅</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--w);margin-bottom:.5rem">주간 점검 체크리스트</h3>
+<p style="font-size:.78rem;color:rgba(255,255,255,.6);line-height:1.8">매주 실천 항목을 점검하며 서로를 격려합니다.</p>
+<div style="margin-top:.5rem;font-size:.75rem;color:rgba(255,255,255,.7);line-height:2">
+<div>☐ 매일 QT(경건의 시간) 실천</div>
+<div>☐ 기도 파트너와 1회 이상 교류</div>
+<div>☐ VIP 1명 이상 연락/관계 형성</div>
+<div>☐ 포럼 말씀 일터에 1가지 적용</div>
+<div>☐ 감사 일기 작성</div>
+</div>
+</div>
+</div>
+<div style="text-align:center;margin-top:1.5rem" class="rv">
+<div style="display:inline-flex;gap:.8rem;flex-wrap:wrap;justify-content:center">
+<div style="padding:.6rem 1.2rem;border-radius:8px;background:rgba(184,137,46,.15);border:1px solid rgba(184,137,46,.3);font-size:.72rem;color:var(--gl)">일터 기도 달력 — 매일 1명의 회원 사업장 중보</div>
+<div style="padding:.6rem 1.2rem;border-radius:8px;background:rgba(184,137,46,.15);border:1px solid rgba(184,137,46,.3);font-size:.72rem;color:var(--gl)">간증 릴레이 — 매월 1명 간증 작성·공유</div>
+</div>
+</div>
+</div></section>
+
+<!-- 월요만나 & 간증 아카이브 -->
+<section style="background:linear-gradient(135deg,#f8f5f0,#fff);padding:70px 2.5rem" id="manna"><div class="si">
+<div class="ct sh rv"><span class="sl">Weekly Manna & Archives</span><h2 class="st">주간 말씀 · 간증 아카이브</h2><p class="sd cm">CBMC 중앙회 월요만나와 김해한마음지회의 간증을 만나보십시오.</p></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:900px;margin:0 auto" class="rv">
+<a href="https://www.cbmc.or.kr/bbs/board.php?bo_table=monday" target="_blank" rel="noopener noreferrer" style="display:block;padding:2rem;border-radius:16px;background:var(--w);border:2px solid var(--g2);text-decoration:none;color:var(--tx);transition:all .35s ease" onmouseover="this.style.borderColor='#b8892e';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(184,137,46,.12)'" onmouseout="this.style.borderColor='#e5e3de';this.style.transform='';this.style.boxShadow=''">
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+<div style="width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--g),var(--gl));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">📖</div>
+<div><div style="font-size:.6rem;letter-spacing:2px;color:var(--g);font-weight:700">CBMC KOREA</div><h3 style="font-size:1.05rem;font-weight:800;color:var(--nd)">월요만나</h3></div>
+</div>
+<p style="font-size:.8rem;color:var(--g7);line-height:1.7;margin-bottom:.8rem">CBMC 한국본부에서 매주 월요일 발행하는 일터 사역자를 위한 묵상 칼럼입니다. 비즈니스 현장에서 하나님의 말씀을 적용하는 실제적 지혜를 나눕니다.</p>
+<div style="padding:6px 16px;border-radius:20px;background:rgba(184,137,46,.08);color:var(--g);font-size:.72rem;font-weight:600;display:inline-block">월요만나 읽으러 가기 →</div>
+</a>
+<a href="https://www.notion.so/3835d61b7c3f4aa383657b4660935f20" target="_blank" rel="noopener noreferrer" style="display:block;padding:2rem;border-radius:16px;background:var(--w);border:2px solid var(--g2);text-decoration:none;color:var(--tx);transition:all .35s ease" onmouseover="this.style.borderColor='#1a4b7a';this.style.transform='translateY(-4px)';this.style.boxShadow='0 12px 40px rgba(26,75,122,.12)'" onmouseout="this.style.borderColor='#e5e3de';this.style.transform='';this.style.boxShadow=''">
+<div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem">
+<div style="width:50px;height:50px;border-radius:12px;background:linear-gradient(135deg,var(--nd),var(--nm));display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0">🎤</div>
+<div><div style="font-size:.6rem;letter-spacing:2px;color:var(--nm);font-weight:700">TESTIMONY ARCHIVE</div><h3 style="font-size:1.05rem;font-weight:800;color:var(--nd)">간증 아카이브</h3></div>
+</div>
+<p style="font-size:.8rem;color:var(--g7);line-height:1.7;margin-bottom:.8rem">김해한마음지회 회원들의 삶의 전환점과 하나님의 은혜를 기록한 간증 모음입니다. Before → Turning Point → After 프레임워크로 정리되어 있습니다.</p>
+<div style="padding:6px 16px;border-radius:20px;background:rgba(26,75,122,.08);color:var(--nm);font-size:.72rem;font-weight:600;display:inline-block">간증 아카이브 열기 →</div>
+</a>
+</div>
+</div></section>
+
+<!-- 글로컬 네트워크 확장 -->
+<section style="background:var(--w);padding:70px 2.5rem" id="glocal"><div class="si">
+<div class="ct sh rv"><span class="sl">Glocal Network</span><h2 class="st">글로컬 네트워크 — 이주민 사역 · 선교지 연결</h2><p class="sd cm">지역(Local)과 세계(Global)를 잇는 CBMC의 글로컬 비전을 함께 실현합니다.</p></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem" class="rv">
+<div style="padding:1.8rem;border-radius:16px;background:linear-gradient(135deg,#e8f5e9,#fff);border:1px solid rgba(76,175,80,.15)">
+<div style="font-size:1.3rem;margin-bottom:.6rem">🌏</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">이주민 사역 연결</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.8">18개국 이주민 네트워크와 연계하여 한국어 교육, 문화 교류, 직업 멘토링을 제공합니다. 다문화가정과 유학생을 위한 글로컬 브릿지 프로그램을 운영합니다.</p>
+</div>
+<div style="padding:1.8rem;border-radius:16px;background:linear-gradient(135deg,#e3f2fd,#fff);border:1px solid rgba(33,150,243,.15)">
+<div style="font-size:1.3rem;margin-bottom:.6rem">✈️</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">선교지 연결</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.8">엘림G선교회와 협력하여 동남아시아, 중앙아시아 선교지와 연결합니다. CBMC 회원의 비즈니스 전문성을 활용한 BAM(Business As Mission) 프로젝트를 진행합니다.</p>
+</div>
+<div style="padding:1.8rem;border-radius:16px;background:linear-gradient(135deg,#fff3e0,#fff);border:1px solid rgba(255,152,0,.15)">
+<div style="font-size:1.3rem;margin-bottom:.6rem">🎓</div>
+<h3 style="font-size:.95rem;font-weight:800;color:var(--nd);margin-bottom:.5rem">글로컬 AI 아카데미</h3>
+<p style="font-size:.78rem;color:var(--g7);line-height:1.8">CBMC 비즈니스 원칙 12모듈을 글로컬 AI 아카데미 정규 과정에 편입하여 이주민 사역자, 일터사역자를 위한 체계적 교육을 제공합니다.</p>
+</div>
+</div>
+<div style="text-align:center;margin-top:1.5rem" class="rv">
+<div style="display:inline-flex;gap:.6rem;flex-wrap:wrap;justify-content:center;font-size:.72rem;color:var(--g5)">
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">베트남</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">인도네시아</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">필리핀</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">캄보디아</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">네팔</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">우즈베키스탄</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">방글라데시</span>
+<span style="padding:4px 12px;border-radius:16px;background:var(--g1)">+11개국</span>
+</div>
+</div>
+</div></section>
+
+<!-- 온라인 문의 폼 -->
+<section style="background:linear-gradient(135deg,#f8f5f0,#fff);padding:70px 2.5rem" id="contact-form"><div class="si">
+<div class="ct sh rv"><span class="sl">Contact Us</span><h2 class="st">문의 · 방문 신청</h2><p class="sd cm">조찬포럼 방문, 회원 가입, 기타 문의를 남겨주세요.</p></div>
+<div style="max-width:600px;margin:0 auto" class="rv">
+<form name="cbmc-contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="background:var(--w);border-radius:16px;padding:2rem;border:1px solid var(--g2);box-shadow:0 4px 20px rgba(0,0,0,.06)">
+<input type="hidden" name="form-name" value="cbmc-contact">
+<p style="display:none"><label>봇 방지: <input name="bot-field"></label></p>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+<div><label style="font-size:.72rem;font-weight:700;color:var(--nd);display:block;margin-bottom:.3rem">이름 *</label><input type="text" name="name" required style="width:100%;padding:10px 14px;border:1.5px solid var(--g2);border-radius:8px;font-size:.85rem;font-family:inherit;transition:border-color .3s" onfocus="this.style.borderColor='#b8892e'" onblur="this.style.borderColor='#e5e3de'"></div>
+<div><label style="font-size:.72rem;font-weight:700;color:var(--nd);display:block;margin-bottom:.3rem">연락처 *</label><input type="tel" name="phone" required style="width:100%;padding:10px 14px;border:1.5px solid var(--g2);border-radius:8px;font-size:.85rem;font-family:inherit;transition:border-color .3s" onfocus="this.style.borderColor='#b8892e'" onblur="this.style.borderColor='#e5e3de'" placeholder="010-0000-0000"></div>
+</div>
+<div style="margin-bottom:1rem"><label style="font-size:.72rem;font-weight:700;color:var(--nd);display:block;margin-bottom:.3rem">문의 유형</label>
+<select name="type" style="width:100%;padding:10px 14px;border:1.5px solid var(--g2);border-radius:8px;font-size:.85rem;font-family:inherit;background:var(--w);transition:border-color .3s" onfocus="this.style.borderColor='#b8892e'" onblur="this.style.borderColor='#e5e3de'">
+<option value="visit">조찬포럼 방문 신청</option><option value="join">회원 가입 문의</option><option value="vip">VIP 초대 안내</option><option value="prayer">기도 요청</option><option value="other">기타 문의</option></select></div>
+<div style="margin-bottom:1rem"><label style="font-size:.72rem;font-weight:700;color:var(--nd);display:block;margin-bottom:.3rem">메시지</label><textarea name="message" rows="4" style="width:100%;padding:10px 14px;border:1.5px solid var(--g2);border-radius:8px;font-size:.85rem;font-family:inherit;resize:vertical;transition:border-color .3s" onfocus="this.style.borderColor='#b8892e'" onblur="this.style.borderColor='#e5e3de'" placeholder="문의 내용을 입력해 주세요."></textarea></div>
+<button type="submit" style="width:100%;padding:14px;border-radius:10px;background:var(--g);color:var(--w);font-size:.9rem;font-weight:700;border:none;cursor:pointer;font-family:inherit;transition:all .3s" onmouseover="this.style.background='var(--gl)'" onmouseout="this.style.background='var(--g)'">문의 보내기</button>
+<p style="text-align:center;margin-top:.6rem;font-size:.65rem;color:var(--g5)">전화 문의: 010-3844-4422(회장) / 010-3338-3332(총무)</p>
+</form>
+</div>
+</div></section>
+
 <!-- CTA -->
 <section class="cta" id="ct"><div class="ctai rv">
 <h2 class="ctat" data-i="cta_t">당신의 일터에서<br>하나님 나라를 함께 세우십시오</h2>
@@ -746,7 +926,7 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 <div class="ftt">
 <div><div class="ftb"><div class="ftbi">CBMC</div><span data-i="ft_name">김해한마음지회</span></div><p class="fta" data-i="ft_about">CBMC는 실업인과 전문인에게 복음을 전하여 예수 그리스도가 구주이심을 증거하고, 주님의 지상명령을 성취하는 국제적 복음단체입니다.<br>📍 반석인더스트리즈(주) — 경남 김해시 장유로 167-23<br>📞 010-2083-3106</p></div>
 <div><div class="fth" data-i="ft_h1">사역</div><ul class="ftl"><li><a href="#forum" data-i="ft_m1">토요조찬포럼</a></li><li><a href="#resources">📚 자료실</a></li><li><a href="#net" data-i="ft_m2">사역과 섬김</a></li><li><a href="#testimony" data-i="ft_m3">간증</a></li><li><a href="#plan" data-i="ft_m4">2026 운영계획</a></li></ul></div>
-<div><div class="fth" data-i="ft_h2">소개</div><ul class="ftl"><li><a href="#tm" data-i="ft_i1">임원소개</a></li><li><a href="#gal" data-i="ft_i2">갤러리</a></li><li><a href="https://www.youtube.com/watch?v=MDJIkMahVYY&list=PLIhQ51lQQFP8s95ZNqD9fZyi1F1rpqYCU" target="_blank" rel="noopener noreferrer" data-i="ft_i3">YouTube</a></li><li><a href="#map" data-i="ft_i4">오시는 길</a></li></ul></div>
+<div><div class="fth" data-i="ft_h2">성장</div><ul class="ftl"><li><a href="#vip-invite">VIP 초대</a></li><li><a href="#nurture">양육 과정</a></li><li><a href="#prayer-partner">기도 파트너</a></li><li><a href="https://www.cbmc.or.kr/bbs/board.php?bo_table=monday" target="_blank" rel="noopener noreferrer">월요만나</a></li><li><a href="#glocal">글로컬 네트워크</a></li><li><a href="#contact-form">문의하기</a></li></ul></div>
 <div><div class="fth" data-i="ft_h3">연결</div><ul class="ftl"><li><a href="https://cbmc.or.kr" target="_blank" rel="noopener noreferrer" data-i="ft_c1">CBMC 한국본부</a></li><li><a href="https://2026vision.netlify.app" target="_blank" rel="noopener noreferrer" data-i="ft_c2">2026 비전</a></li><li><a href="https://bylaw-hanmaum.netlify.app" target="_blank" rel="noopener noreferrer" data-i="ft_c3">회칙</a></li><li><a href="https://hanmaum-schedule.netlify.app" target="_blank" rel="noopener noreferrer" data-i="ft_c4">연간 일정</a></li></ul></div>
 </div>
 <div class="ftbt">
