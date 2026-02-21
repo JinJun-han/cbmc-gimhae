@@ -6,9 +6,9 @@
 const FALLBACK_DATA = [
   {
     id: "30dedb42-7c02-81ba-8751-deef38cec8c3",
-    title: "조찬주회 — 임성태 한의박사",
+    title: "조찬주회 — 임성택 한의학박사",
     date: "2026-03-07",
-    speaker: "임성태 한의박사 (자연힐 한방병원 병원장)",
+    speaker: "임성택 한의학박사 (자연힐 한방병원 병원장)",
     scripture: "",
     status: "예정",
     category: "조찬주회",
