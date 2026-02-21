@@ -156,7 +156,9 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 .team{background:var(--ow)}
 .tg{display:grid;grid-template-columns:repeat(4,1fr);gap:1.3rem;margin-top:2.5rem}
 .tc{text-align:center;transition:all .35s ease}.tc:hover{transform:translateY(-4px)}
-.ta{width:110px;height:110px;border-radius:50%;margin:0 auto .8rem;background:linear-gradient(135deg,var(--nm),var(--nl));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--w);box-shadow:0 8px 32px rgba(10,31,53,.08);border:3px solid var(--w);transition:all .35s ease}
+.ta{width:110px;height:110px;border-radius:50%;margin:0 auto .8rem;background:linear-gradient(135deg,var(--nm),var(--nl));display:flex;align-items:center;justify-content:center;font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:700;color:var(--w);box-shadow:0 8px 32px rgba(10,31,53,.08);border:3px solid var(--w);transition:all .35s ease;overflow:hidden}
+.ta img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform .4s ease}
+.tc:hover .ta img{transform:scale(1.08)}
 .tc:hover .ta{box-shadow:0 16px 48px rgba(10,31,53,.12);border-color:var(--gp)}
 .tc h4{font-size:.92rem;font-weight:700;color:var(--nd);margin-bottom:.1rem}
 .tr{font-size:.72rem;color:var(--g);font-weight:600;margin-bottom:.25rem}
@@ -606,13 +608,13 @@ section{padding:90px 2.5rem}.si{max-width:1180px;margin:0 auto}
 <section class="team" id="tm"><div class="si">
 <div class="ct sh rv"><span class="sl">Leadership Team</span><h2 class="st" data-i="team_t">함께 걸어가는 임원진</h2><p class="sd cm"><span data-i="team_d">김해한마음지회를 이끌어가는 크리스천 비즈니스 리더들입니다.</span></p></div>
 <div class="tg">
-<div class="tc rv"><div class="ta">회장</div><h4>배병옥 회장</h4><div class="tr">지회장</div><div class="td">삼성생명 · 네이처셀</div></div>
-<div class="tc rv"><div class="ta">부회</div><h4>김도현 부회장</h4><div class="tr">부지회장</div><div class="td">켐텍 대표</div></div>
+<div class="tc rv"><div class="ta"><img src="img-exec-bae.jpg" alt="배병옥 회장"></div><h4>배병옥 회장</h4><div class="tr">지회장</div><div class="td">삼성생명 · 네이처셀</div></div>
+<div class="tc rv"><div class="ta"><img src="img-exec-kim.jpg" alt="김도현 부회장"></div><h4>김도현 부회장</h4><div class="tr">부지회장</div><div class="td">켐텍 대표</div></div>
 <div class="tc rv"><div class="ta">총무</div><h4>임명식 총무</h4><div class="tr">사무국장</div><div class="td">정밀인쇄 대표</div></div>
-<div class="tc rv"><div class="ta">부총</div><h4>정철석 부총무</h4><div class="tr">부총무</div><div class="td">법무사</div></div>
-<div class="tc rv"><div class="ta">회계</div><h4>공권세 회계</h4><div class="tr">재무</div><div class="td">진해어린이집 대표</div></div>
-<div class="tc rv"><div class="ta" style="background:rgba(184,137,46,.15);color:var(--gl)">강사</div><h4>서재찬 박사</h4><div class="tr">강사</div><div class="td">반석인더스트리즈 대표</div></div>
-<div class="tc rv"><div class="ta" style="background:rgba(26,75,122,.15);color:#1a4b7a">고문</div><h4>한진준 목사</h4><div class="tr">고문</div><div class="td">엘림G선교회 대표</div></div>
+<div class="tc rv"><div class="ta"><img src="img-exec-jung.jpg" alt="정철석 부총무"></div><h4>정철석 부총무</h4><div class="tr">부총무</div><div class="td">법무사</div></div>
+<div class="tc rv"><div class="ta"><img src="img-exec-gong.jpg" alt="공권세 회계"></div><h4>공권세 회계</h4><div class="tr">재무</div><div class="td">진해어린이집 대표</div></div>
+<div class="tc rv"><div class="ta" style="border-color:var(--gp)"><img src="img-exec-seo.jpg" alt="서재찬 박사"></div><h4>서재찬 박사</h4><div class="tr" style="color:var(--gl)">강사</div><div class="td">반석인더스트리즈 대표</div></div>
+<div class="tc rv"><div class="ta" style="border-color:#1a4b7a"><img src="img-exec-han.jpg" alt="한진준 목사"></div><h4>한진준 목사</h4><div class="tr" style="color:#1a4b7a">고문</div><div class="td">엘림G선교회 대표</div></div>
 </div></div></section>
 
 <!-- MEMBERS 회원 -->
