@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>노아의 방주 경영학 — CBMC 비즈니스 원칙 모듈 02 | 김해한마음지회</title>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--nd:#0a1f35;--gl:#b8892e;--bg:#f7f5f0;--txt:#2c2c2c;--g5:#6b7280;--ark:#1b4332;--ark2:#2d6a4f;--sea:#14213d;--wave:#1a5276;--wood:#8b6914;--rain:#34495e}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--bg);color:var(--txt);line-height:1.9;-webkit-font-smoothing:antialiased}
+
+/* Top Bar */
+.top-bar{background:var(--sea);padding:12px 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.top-bar a{color:rgba(255,255,255,.7);text-decoration:none;font-size:.75rem;font-weight:500;transition:color .3s}
+.top-bar a:hover{color:#fff}
+.top-logo{display:flex;align-items:center;gap:8px}
+.top-logo-icon{background:var(--gl);color:#fff;font-size:.55rem;font-weight:900;padding:4px 7px;border-radius:4px;letter-spacing:1px}
+.top-logo-text{color:#fff;font-size:.82rem;font-weight:700}
+.top-actions{display:flex;gap:16px;align-items:center}
+.btn-print{padding:6px 16px;border-radius:20px;border:1px solid rgba(255,255,255,.3);background:transparent;color:#fff;font-size:.7rem;font-weight:600;cursor:pointer;transition:all .3s}
+.btn-print:hover{background:rgba(255,255,255,.15)}
+
+/* Hero */
+.hero{background:linear-gradient(135deg,#0d1b2a 0%,#1b2838 30%,#14213d 60%,#1b4332 100%);padding:80px 2rem 60px;text-align:center;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;bottom:0;left:0;right:0;height:120px;background:linear-gradient(to top,rgba(27,67,50,.4),transparent)}
+.hero::after{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%231a5276' fill-opacity='0.06' d='M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'/%3E%3C/svg%3E");background-size:cover;background-position:bottom}
+.hero-inner{position:relative;z-index:1;max-width:700px;margin:0 auto}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;padding:6px 18px;border-radius:20px;background:rgba(27,67,50,.4);border:1px solid rgba(45,106,79,.5);margin-bottom:1.5rem}
+.hero-badge span{color:#52b788;font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.module-num{display:inline-flex;align-items:center;justify-content:center;width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--ark),var(--ark2));color:#fff;font-size:1.1rem;font-weight:900;margin-bottom:1rem;border:2px solid rgba(82,183,136,.3)}
+.hero h1{font-family:'Nanum Myeongjo',serif;font-size:2.4rem;font-weight:800;color:#fff;line-height:1.4;margin-bottom:1rem}
+.hero h1 em{font-style:normal;color:#52b788}
+.hero-sub{font-size:.95rem;color:rgba(255,255,255,.65);margin-bottom:.3rem;font-weight:300}
+.hero-verse{font-family:'Nanum Myeongjo',serif;font-size:.85rem;color:rgba(82,183,136,.8);margin-top:1rem;font-style:italic}
+.hero-meta{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-top:1.5rem}
+.hero-meta-item{display:flex;align-items:center;gap:6px;color:rgba(255,255,255,.45);font-size:.72rem}
+
+/* Module Progress */
+.progress-bar{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);padding:10px 2rem}
+.progress-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:12px}
+.prog-label{font-size:.65rem;color:var(--g5);font-weight:600;white-space:nowrap}
+.prog-track{flex:1;height:6px;background:rgba(0,0,0,.06);border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;width:16.6%;background:linear-gradient(90deg,var(--ark),#52b788);border-radius:3px;transition:width .5s}
+.prog-text{font-size:.6rem;color:var(--ark);font-weight:700}
+
+/* TOC */
+.toc-bar{background:#fff;border-bottom:1px solid rgba(0,0,0,.06);padding:14px 2rem;position:sticky;top:48px;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.toc-inner{max-width:900px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+.toc-btn{padding:7px 14px;border-radius:20px;border:1px solid rgba(0,0,0,.1);background:transparent;color:var(--g5);font-size:.68rem;font-weight:600;cursor:pointer;transition:all .3s;white-space:nowrap}
+.toc-btn:hover,.toc-btn.active{background:var(--ark);color:#fff;border-color:var(--ark)}
+
+/* Content */
+.content{max-width:760px;margin:0 auto;padding:3rem 2rem 4rem}
+
+.section{margin-bottom:3.5rem;animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.section-num{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,var(--ark),var(--ark2));color:#fff;font-size:.85rem;font-weight:800;margin-bottom:1rem}
+.section-title{font-family:'Nanum Myeongjo',serif;font-size:1.55rem;font-weight:800;color:var(--sea);margin-bottom:.5rem;line-height:1.4}
+.section-subtitle{font-size:.85rem;color:var(--ark2);font-weight:700;margin-bottom:1.5rem;letter-spacing:.5px}
+
+/* Scripture */
+.scripture{background:linear-gradient(135deg,#edf6f0,#f5faf7);border-left:4px solid var(--ark2);padding:1.2rem 1.5rem;border-radius:0 12px 12px 0;margin:1.5rem 0;position:relative}
+.scripture::before{content:'\201C';position:absolute;top:-10px;left:12px;font-size:3rem;color:var(--ark2);opacity:.2;font-family:'Nanum Myeongjo',serif}
+.scripture p{font-family:'Nanum Myeongjo',serif;font-size:.9rem;color:var(--sea);line-height:1.8}
+.scripture cite{display:block;margin-top:.5rem;font-size:.75rem;color:var(--ark2);font-weight:700;font-style:normal}
+
+/* Body */
+.body-text{font-size:.92rem;color:var(--txt);line-height:2;margin-bottom:1.2rem}
+.body-text strong{color:var(--sea);font-weight:700}
+
+/* Highlight */
+.highlight{background:linear-gradient(135deg,rgba(27,67,50,.06),rgba(27,67,50,.02));border:1px solid rgba(27,67,50,.15);border-radius:12px;padding:1.2rem 1.5rem;margin:1.5rem 0}
+.highlight-title{font-size:.8rem;font-weight:800;color:var(--ark);margin-bottom:.5rem;letter-spacing:.5px}
+.highlight p{font-size:.88rem;color:var(--txt);line-height:1.8}
+
+/* Key Point */
+.key-point{background:linear-gradient(135deg,var(--sea),#1b3a4b);color:#fff;border-radius:12px;padding:1.5rem;margin:1.5rem 0;position:relative;overflow:hidden}
+.key-point::after{content:'';position:absolute;top:0;right:0;width:100px;height:100px;background:var(--ark2);opacity:.15;border-radius:0 0 0 100%}
+.key-point p{font-family:'Nanum Myeongjo',serif;font-size:.95rem;line-height:1.8}
+.key-point em{font-style:normal;color:#52b788;font-weight:700}
+
+/* Business Insight */
+.biz-insight{background:#fff;border:1px solid rgba(27,67,50,.15);border-radius:12px;padding:1.5rem;margin:1.5rem 0;position:relative}
+.biz-insight::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--ark),#52b788,var(--gl));border-radius:12px 12px 0 0}
+.biz-tag{display:inline-flex;align-items:center;gap:4px;padding:4px 12px;border-radius:12px;background:rgba(27,67,50,.08);color:var(--ark);font-size:.65rem;font-weight:700;margin-bottom:.8rem}
+.biz-insight h4{font-size:.9rem;font-weight:800;color:var(--sea);margin-bottom:.5rem}
+.biz-insight p{font-size:.85rem;color:var(--txt);line-height:1.8}
+.biz-insight ul{list-style:none;padding:0;margin:.5rem 0 0}
+.biz-insight li{font-size:.82rem;color:var(--txt);line-height:1.8;padding-left:18px;position:relative;margin-bottom:.3rem}
+.biz-insight li::before{content:'▸';position:absolute;left:0;color:var(--ark2);font-weight:700}
+
+/* Spec Box */
+.spec-box{background:linear-gradient(135deg,#fef9ef,#fff8e8);border:2px solid var(--wood);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.spec-box h4{font-size:.88rem;font-weight:800;color:var(--wood);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+.spec-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px dashed rgba(139,105,20,.2);font-size:.85rem}
+.spec-row:last-child{border-bottom:none}
+.spec-label{color:var(--g5);font-weight:500}
+.spec-val{font-weight:700;color:var(--sea)}
+.spec-note{font-size:.7rem;color:var(--wood);margin-top:.3rem;font-style:italic}
+
+/* Table */
+.formula-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:12px;overflow:hidden;margin:1.5rem 0;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+.formula-table thead th{background:var(--sea);color:#fff;padding:12px 14px;font-size:.72rem;font-weight:700;text-align:left;letter-spacing:.5px}
+.formula-table tbody td{padding:11px 14px;font-size:.78rem;border-bottom:1px solid rgba(0,0,0,.05);vertical-align:top;line-height:1.6}
+.formula-table tbody tr:nth-child(even){background:rgba(0,0,0,.02)}
+.formula-table tbody tr:last-child td{border-bottom:none}
+
+/* Action Card */
+.action-card{background:linear-gradient(135deg,var(--ark),var(--ark2));border-radius:16px;padding:2rem;margin:2rem 0;color:#fff}
+.action-card h3{font-family:'Nanum Myeongjo',serif;font-size:1.15rem;font-weight:800;margin-bottom:1.5rem;text-align:center;color:#52b788}
+.action-item{display:flex;gap:12px;align-items:flex-start;margin-bottom:1.2rem;padding-bottom:1.2rem;border-bottom:1px solid rgba(255,255,255,.12)}
+.action-item:last-child{margin-bottom:0;padding-bottom:0;border-bottom:none}
+.action-num{width:30px;height:30px;border-radius:50%;background:rgba(82,183,136,.2);border:1.5px solid #52b788;color:#52b788;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:800;flex-shrink:0;margin-top:2px}
+.action-item-title{font-weight:700;font-size:.85rem;margin-bottom:3px}
+.action-item-desc{font-size:.78rem;color:rgba(255,255,255,.65);line-height:1.6}
+
+/* Prayer */
+.prayer{background:linear-gradient(135deg,#edf6f0,#f5faf7);border:1px solid rgba(27,67,50,.15);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.prayer-title{font-size:.8rem;font-weight:800;color:var(--ark);margin-bottom:.8rem;display:flex;align-items:center;gap:6px}
+.prayer p{font-family:'Nanum Myeongjo',serif;font-size:.88rem;color:var(--sea);line-height:2;font-style:italic}
+
+/* Workshop */
+.workshop{background:#fff;border:2px dashed rgba(27,67,50,.2);border-radius:12px;padding:1.5rem;margin:1.5rem 0}
+.workshop h4{font-size:.85rem;font-weight:800;color:var(--ark);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
+.ws-q{font-size:.85rem;color:var(--sea);margin-bottom:.8rem;padding-left:20px;position:relative;line-height:1.7}
+.ws-q::before{content:'Q.';position:absolute;left:0;color:var(--ark2);font-weight:800}
+.ws-space{border:1px solid rgba(0,0,0,.08);border-radius:8px;padding:12px;margin:0 0 1rem;min-height:50px;background:rgba(0,0,0,.015);font-size:.75rem;color:rgba(0,0,0,.2)}
+
+/* Separator */
+.sep{text-align:center;margin:3rem 0;color:var(--ark2);font-size:.9rem;letter-spacing:12px;opacity:.4}
+
+/* Footer */
+.footer-cta{text-align:center;padding:3rem 2rem;background:#fff;border-top:1px solid rgba(0,0,0,.06)}
+.footer-cta p{font-size:.8rem;color:var(--g5);margin-bottom:1rem}
+.footer-nav{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:1.5rem}
+.footer-nav a{display:inline-flex;align-items:center;gap:6px;padding:10px 22px;border-radius:24px;text-decoration:none;font-size:.8rem;font-weight:700;transition:all .3s}
+.nav-prev{background:rgba(0,0,0,.05);color:var(--sea)}
+.nav-prev:hover{background:rgba(0,0,0,.1)}
+.nav-home{background:var(--sea);color:#fff}
+.nav-home:hover{background:var(--ark)}
+.footer-cta .copy{margin-top:1.5rem;font-size:.65rem;color:rgba(0,0,0,.3)}
+
+/* Responsive */
+@media(max-width:640px){
+.hero h1{font-size:1.5rem}
+.content{padding:2rem 1.2rem 3rem}
+.section-title{font-size:1.25rem}
+.hero-meta{flex-direction:column;gap:8px}
+.spec-row{flex-direction:column;gap:2px}
+}
+@media print{
+.top-bar,.toc-bar,.progress-bar,.footer-cta,.btn-print{display:none!important}
+.hero{padding:40px 20px;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.content{max-width:100%;padding:20px}
+.section{break-inside:avoid}
+.key-point,.scripture,.highlight,.biz-insight,.spec-box,.prayer,.action-card{break-inside:avoid}
+body{font-size:11pt;line-height:1.7}
+}
+</style>
+</head>
+<body>
+
+<!-- Top Bar -->
+<div class="top-bar">
+<a href="index.html" class="top-logo"><span class="top-logo-icon">CBMC</span><span class="top-logo-text">김해한마음지회</span></a>
+<div class="top-actions">
+<button class="btn-print" onclick="window.print()">🖨 인쇄 / PDF</button>
+<a href="index.html#resources">← 자료실</a>
+</div>
+</div>
+
+<!-- Progress -->
+<div class="progress-bar">
+<div class="progress-inner">
+<span class="prog-label">비즈니스 원칙 시리즈</span>
+<div class="prog-track"><div class="prog-fill"></div></div>
+<span class="prog-text">2 / 12 모듈</span>
+</div>
+</div>
+
+<!-- Hero -->
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-badge"><span>CBMC 비즈니스 원칙 시리즈 · MODULE 02</span></div>
+<div class="module-num">02</div>
+<h1><em>노아의 방주</em> 경영학</h1>
+<div class="hero-sub">하나님의 위기 경영 매뉴얼 — 창세기 6-9장</div>
+<div class="hero-verse">"너는 고페르 나무로 너를 위하여 방주를 만들되 그 안에 칸들을 막고 역청을 그 안팎에 칠하라" — 창 6:14</div>
+<div class="hero-meta">
+<div class="hero-meta-item">📖 본문: 창세기 6-9장</div>
+<div class="hero-meta-item">👥 대상: CBMC 김해한마음지회</div>
+<div class="hero-meta-item">⏱ 분량: 25분</div>
+<div class="hero-meta-item">🏛 글로컬 AI 아카데미</div>
+</div>
+</div>
+</div>
+
+<!-- TOC -->
+<div class="toc-bar">
+<div class="toc-inner">
+<button class="toc-btn active" onclick="sTo('opening')">프롤로그</button>
+<button class="toc-btn" onclick="sTo('ch1')">1장 · 위기 감지</button>
+<button class="toc-btn" onclick="sTo('ch2')">2장 · 규격 경영</button>
+<button class="toc-btn" onclick="sTo('ch3')">3장 · 120년 프로젝트</button>
+<button class="toc-btn" onclick="sTo('ch4')">4장 · 리스크 관리</button>
+<button class="toc-btn" onclick="sTo('ch5')">5장 · 때의 경영</button>
+<button class="toc-btn" onclick="sTo('ch6')">6장 · 위기 속 리더십</button>
+<button class="toc-btn" onclick="sTo('ch7')">7장 · 언약 경영</button>
+<button class="toc-btn" onclick="sTo('closing')">에필로그</button>
+</div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+<!-- PROLOGUE -->
+<div class="section" id="opening">
+<div class="section-title">당신의 회사에 홍수 경보가 울린다면</div>
+<div class="section-subtitle">프롤로그 — 왜 노아의 방주가 경영학인가</div>
+
+<p class="body-text">대표님, 사장님, 한 가지 상상을 해보십시오.</p>
+<p class="body-text">내일 아침 출근하는데, 뉴스에서 이렇게 말합니다. <strong>"6개월 후 대한민국 경제에 전례 없는 위기가 옵니다."</strong> 전문가들은 비웃습니다. 동종 업계 대표들은 "그런 일 없다"고 합니다. 직원들도 "사장님, 너무 걱정하시는 거 아닙니까" 합니다.</p>
+<p class="body-text">그런데 <strong>당신만</strong> 그 신호를 감지했습니다. 당신은 어떻게 하시겠습니까?</p>
+
+<div class="key-point">
+<p>노아가 정확히 이 상황이었습니다.<br><em>아무도 믿지 않는 위기를 감지하고, 아무도 이해하지 못하는 프로젝트를 시작하고, 120년을 흔들림 없이 실행하여, 결국 모든 것을 보존한 사람.</em></p>
+<p>이것이 경영학이 아니면 무엇이겠습니까?</p>
+</div>
+
+<p class="body-text">모듈 01 '므두셀라의 공식'에서 우리는 <strong>신호를 감지하는 법</strong>을 배웠습니다. 므두셀라의 이름 속에 숨겨진 심판의 시계, 그리고 그보다 더 강력한 십자가와 성령의 영원한 알람을.</p>
+<p class="body-text">모듈 02에서는 한 걸음 더 나아갑니다. <strong>신호를 감지한 후 어떻게 행동하느냐</strong> — 이것이 노아의 방주 경영학입니다.</p>
+
+<div class="highlight">
+<div class="highlight-title">모듈 02 학습 목표</div>
+<p><strong>7가지 경영 원칙</strong>을 창세기 6-9장에서 추출하여 오늘의 비즈니스에 즉시 적용합니다:<br>
+위기 감지 → 규격 경영 → 장기 프로젝트 관리 → 리스크 관리 → 타이밍 → 위기 리더십 → 언약 경영</p>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 1 -->
+<div class="section" id="ch1">
+<div class="section-num">1</div>
+<div class="section-title">위기 감지의 경영학 — 노아만 본 것</div>
+<div class="section-subtitle">Crisis Detection: What Only Noah Saw</div>
+
+<div class="scripture">
+<p>여호와께서 사람의 죄악이 세상에 가득함과 그의 마음으로 생각하는 모든 계획이 항상 악할 뿐임을 보시고</p>
+<cite>— 창세기 6:5</cite>
+</div>
+
+<p class="body-text"><strong>세상은 평화로웠습니다.</strong> 사람들은 먹고 마시고, 장가가고 시집가고 있었습니다(마 24:38). 경제는 돌아가고, 시장은 활발했습니다. 그 누구도 위기를 느끼지 못했습니다.</p>
+<p class="body-text">단 한 사람, <strong>노아만 달랐습니다.</strong></p>
+
+<div class="scripture">
+<p>노아는 의인이요 당대에 완전한 자라 그가 하나님과 동행하였으며</p>
+<cite>— 창세기 6:9</cite>
+</div>
+
+<p class="body-text">"하나님과 동행하였으며" — 모듈 01에서 배운 에녹의 동행(히트할레크)이 여기서 다시 나타납니다. 에녹이 므두셀라를 통해 신호를 감지했듯, <strong>노아는 하나님과의 동행을 통해 시대의 신호를 감지한 것</strong>입니다.</p>
+
+<div class="key-point">
+<p><em>경영학 제1원칙: 위기는 시장이 알려주지 않습니다. 하나님과 동행하는 자만이 시대를 읽습니다.</em></p>
+</div>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>CEO의 위기 감지 역량</h4>
+<p>노아의 위기 감지에서 배우는 3가지 원칙:</p>
+<ul>
+<li><strong>다수의 안일함에 동조하지 마십시오.</strong> "다들 괜찮다고 하니까 괜찮겠지"는 가장 위험한 판단입니다. 2008년 금융위기 때 서브프라임 붕괴를 감지한 소수만 살아남았습니다.</li>
+<li><strong>내면의 신호에 귀 기울이십시오.</strong> 노아는 하나님의 말씀으로 위기를 감지했습니다. CBMC 비즈니스맨은 성령님의 인도로 시장의 변곡점을 봅니다.</li>
+<li><strong>감지한 것을 즉시 행동으로 옮기십시오.</strong> 노아는 들은 즉시 방주를 짓기 시작했습니다. 감지만 하고 행동하지 않는 것은 감지하지 못한 것과 같습니다.</li>
+</ul>
+</div>
+
+<div class="workshop">
+<h4>✍️ 자가진단 워크시트</h4>
+<div class="ws-q">현재 내 사업/업계에서 감지되는 위기 신호 3가지를 적어보십시오.</div>
+<div class="ws-space">1. ______________________<br>2. ______________________<br>3. ______________________</div>
+<div class="ws-q">그 신호를 감지한 후, 나는 어떤 행동을 취했습니까? 혹은 무시했습니까?</div>
+<div class="ws-space">___________________________</div>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 2 -->
+<div class="section" id="ch2">
+<div class="section-num">2</div>
+<div class="section-title">규격 경영 — 하나님의 설계도</div>
+<div class="section-subtitle">Specification Management: God's Blueprint</div>
+
+<div class="scripture">
+<p>너는 고페르 나무로 너를 위하여 방주를 만들되 그 안에 칸들을 막고 역청을 그 안팎에 칠하라. 그 방주의 길이는 삼백 규빗, 너비는 오십 규빗, 높이는 삼십 규빗이라.</p>
+<cite>— 창세기 6:14-15</cite>
+</div>
+
+<p class="body-text">하나님은 노아에게 "방주를 지어라"고만 하지 않으셨습니다. <strong>정확한 규격을 주셨습니다.</strong></p>
+
+<div class="spec-box">
+<h4>📐 방주의 규격 명세서</h4>
+<div class="spec-row"><span class="spec-label">길이</span><span class="spec-val">300 규빗 (약 137m)</span></div>
+<div class="spec-row"><span class="spec-label">너비</span><span class="spec-val">50 규빗 (약 23m)</span></div>
+<div class="spec-row"><span class="spec-label">높이</span><span class="spec-val">30 규빗 (약 14m)</span></div>
+<div class="spec-row"><span class="spec-label">비율</span><span class="spec-val">6 : 1 : 0.6</span></div>
+<div class="spec-row"><span class="spec-label">층수</span><span class="spec-val">3층 구조</span></div>
+<div class="spec-row"><span class="spec-label">재료</span><span class="spec-val">고페르 나무 + 역청 방수</span></div>
+<div class="spec-row"><span class="spec-label">추정 배수량</span><span class="spec-val">약 43,000톤급</span></div>
+<div class="spec-note">※ 길이:너비 비율 6:1은 현대 대형 선박의 최적 안정 비율과 동일합니다</div>
+</div>
+
+<p class="body-text">놀라운 사실이 있습니다. <strong>길이:너비 비율 6:1</strong>은 현대 조선공학에서 대형 선박의 <strong>최적 안정성 비율</strong>입니다. 4,000년 전 하나님이 주신 규격이 오늘날 과학으로 검증된 것입니다.</p>
+
+<div class="key-point">
+<p><em>경영학 제2원칙: 비전만 있고 규격이 없으면 몽상입니다. 하나님은 꿈도 주시고 설계도도 주십니다.</em></p>
+</div>
+
+<p class="body-text">노아가 자기 생각대로 방주를 지었다면 어떻게 되었을까요? "길이를 좀 줄이고 높이를 더 올리자" "3층은 너무 복잡하니 2층으로 하자." 그랬다면 <strong>방주는 홍수에 전복되었을 것</strong>입니다.</p>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>사업의 규격 — SOP(표준운영절차)의 성경적 기원</h4>
+<ul>
+<li><strong>재료의 규격</strong>: "고페르 나무" — 아무 나무가 아닙니다. 방수성과 내구성이 뛰어난 특정 목재입니다. 사업에서 원재료의 품질 기준을 타협하면 결과물이 무너집니다.</li>
+<li><strong>구조의 규격</strong>: "칸들을 막고" — 격벽(Bulkhead) 구조입니다. 현대 선박에서 침수 시 피해를 격리하는 핵심 기술입니다. 사업의 부서별 독립 운영 시스템과 같습니다.</li>
+<li><strong>방수의 규격</strong>: "역청을 안팎에" — 내부와 외부 모두 방수처리했습니다. 기업의 내부 통제와 외부 리스크 관리를 동시에 해야 합니다.</li>
+<li><strong>비율의 규격</strong>: 6:1:0.6 — 임의로 바꾸면 전복됩니다. 사업의 매출:비용:이익 비율도 최적점이 있습니다.</li>
+</ul>
+</div>
+
+<div class="highlight">
+<div class="highlight-title">핵심 통찰</div>
+<p>하나님은 <strong>"방주를 지어라"</strong>라는 비전과 함께 <strong>구체적인 설계도</strong>를 주셨습니다. 비전이 '무엇을(What)'이라면, 규격은 '어떻게(How)'입니다. CBMC 비즈니스맨은 <strong>비전도 하나님께 받고, 실행 방법도 하나님께 여쭈는 사람</strong>입니다. 기도는 비전만 구하는 것이 아니라 구체적인 실행 규격까지 구하는 것입니다.</p>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 3 -->
+<div class="section" id="ch3">
+<div class="section-num">3</div>
+<div class="section-title">120년 프로젝트 관리 — 보이지 않는 결과를 향해</div>
+<div class="section-subtitle">Long-term Project Management Without Visible Results</div>
+
+<div class="scripture">
+<p>여호와가 이르시되 나의 영이 영원히 사람과 함께 하지 아니하리니 이는 그들이 육신이 됨이라 그러나 그들의 날은 백이십 년이 되리라 하시니라</p>
+<cite>— 창세기 6:3</cite>
+</div>
+
+<p class="body-text">노아에게 주어진 시간은 <strong>120년</strong>이었습니다. 이것은 단순한 수명이 아닙니다. 방주 건조에 주어진 프로젝트 기한입니다.</p>
+<p class="body-text">120년. 한번 생각해 보십시오. 여러분이 사업 계획서를 썼는데, 그 사업이 결실을 맺기까지 <strong>120년</strong>이 걸린다고 합니다. 투자 수익은 0입니다. 고객은 없습니다. 동종업계는 비웃습니다. 가족마저 의심합니다.</p>
+<p class="body-text"><strong>그래도 하시겠습니까?</strong></p>
+
+<div class="key-point">
+<p><em>경영학 제3원칙: 진짜 비전은 당장의 수익이 아니라, 생존과 보존의 문제입니다. 하나님의 프로젝트는 시장의 박수가 아니라 하나님의 "잘했다"로 평가됩니다.</em></p>
+</div>
+
+<p class="body-text">노아의 120년 프로젝트에서 배우는 것:</p>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>장기 프로젝트의 4가지 생존 원칙</h4>
+<ul>
+<li><strong>확신의 원천을 시장에 두지 마십시오.</strong> 노아의 확신은 시장 조사에서 온 것이 아니라 하나님의 말씀에서 왔습니다. 시장의 반응이 냉담해도, 하나님이 주신 비전이 확실하면 흔들리지 마십시오.</li>
+<li><strong>중간 성과가 없어도 공정을 관리하십시오.</strong> 120년간 매출 0원. 그러나 노아는 매일 나무를 깎고, 역청을 바르고, 칸을 만들었습니다. 결과가 보이지 않아도 과정의 품질을 타협하지 않았습니다.</li>
+<li><strong>비전을 다음 세대와 공유하십시오.</strong> 노아의 세 아들 — 셈, 함, 야벳은 아버지의 프로젝트에 동참했습니다. 혼자 짊어지지 마십시오. 팀과 후계자를 세우십시오.</li>
+<li><strong>완공일은 하나님이 정하십니다.</strong> 노아는 "언제 비가 오느냐"를 묻지 않았습니다. 그저 매일의 일을 충실히 했습니다. 사업의 결실 시점은 하나님의 타이밍입니다.</li>
+</ul>
+</div>
+
+<div class="scripture">
+<p>노아가 그와 같이 하되 하나님이 자기에게 명하신 대로 다 준행하였더라</p>
+<cite>— 창세기 6:22</cite>
+</div>
+
+<p class="body-text">6장 22절의 <strong>"다 준행하였더라"</strong> — 히브리어 '바야아스 켄'은 <strong>"정확히 그렇게 실행했다"</strong>는 의미입니다. 자기 해석을 더하지 않았습니다. 편의대로 바꾸지 않았습니다. <strong>100% 그대로 실행</strong>했습니다.</p>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 4 -->
+<div class="section" id="ch4">
+<div class="section-num">4</div>
+<div class="section-title">리스크 관리와 보존 — 방주 안의 공급망</div>
+<div class="section-subtitle">Risk Management & Supply Chain Preservation</div>
+
+<div class="scripture">
+<p>모든 생물을 너는 각기 암수 둘씩 방주로 이끌어들여 너와 함께 생명을 보존하게 하되... 또 너는 먹을 양식을 네게로 가져다가 저축하라 이것이 너와 그들의 먹이가 되리라</p>
+<cite>— 창세기 6:19-21</cite>
+</div>
+
+<p class="body-text">방주는 단순한 배가 아니었습니다. <strong>완전한 생태계 보존 시스템</strong>이었습니다.</p>
+
+<table class="formula-table">
+<thead><tr><th>방주의 시스템</th><th>현대 경영 개념</th><th>적용</th></tr></thead>
+<tbody>
+<tr><td><strong>암수 둘씩</strong></td><td>핵심 자산의 이중화(Redundancy)</td><td>핵심 인력, 기술, 거래처를 백업 없이 운영하지 마십시오</td></tr>
+<tr><td><strong>종류대로</strong></td><td>포트폴리오 다각화(Diversification)</td><td>한 종류에 올인하지 않고, 다양한 수익원을 확보하십시오</td></tr>
+<tr><td><strong>양식 저축</strong></td><td>비상 자금 & 현금 흐름 관리</td><td>최소 6개월 운영 자금을 확보하십시오. 노아는 1년치를 준비했습니다</td></tr>
+<tr><td><strong>3층 구조</strong></td><td>조직 계층 설계</td><td>최하층(무거운 동물=기반 인프라), 중간층(중간 동물=운영팀), 최상층(가벼운 동물+가족=경영진)</td></tr>
+<tr><td><strong>격벽(칸막이)</strong></td><td>위험 격리(Risk Isolation)</td><td>한 부서의 문제가 전체를 무너뜨리지 않는 구조를 만드십시오</td></tr>
+<tr><td><strong>역청 방수</strong></td><td>내외부 통제 시스템</td><td>안팎 모두 방수 = 내부 비리 방지 + 외부 리스크 차단</td></tr>
+</tbody>
+</table>
+
+<div class="key-point">
+<p><em>경영학 제4원칙: 위기가 오기 전에 보존 시스템을 구축하십시오. 홍수가 시작된 후에 방주를 지을 수는 없습니다.</em></p>
+</div>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>노아의 BCP(Business Continuity Plan)</h4>
+<p>노아의 방주는 인류 최초의 <strong>사업 연속성 계획(BCP)</strong>입니다:</p>
+<ul>
+<li><strong>인적 자원 보존</strong>: 8명의 가족 = 핵심 인력. 모든 것을 잃어도 핵심 팀이 살아있으면 재건할 수 있습니다.</li>
+<li><strong>종자 자산 보존</strong>: 모든 동물의 암수 한 쌍 = 사업의 핵심 기술/IP/고객 데이터. 디지털 백업, 특허 보호가 방주의 칸입니다.</li>
+<li><strong>식량 비축</strong>: 1년치 양식 = 비상 운영 자금. "비가 올 것 같으면" 이미 늦습니다. 평소에 준비해야 합니다.</li>
+</ul>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 5 -->
+<div class="section" id="ch5">
+<div class="section-num">5</div>
+<div class="section-title">때의 경영 — 들어갈 때와 나올 때</div>
+<div class="section-subtitle">Timing Management: When to Enter, When to Exit</div>
+
+<div class="scripture">
+<p>여호와께서 노아에게 이르시되 너와 네 온 집은 방주로 들어가라 네가 이 세대에서 내 앞에 의로움을 내가 보았음이니라</p>
+<cite>— 창세기 7:1</cite>
+</div>
+
+<p class="body-text">노아는 <strong>자기 판단으로 방주에 들어가지 않았습니다.</strong> 하나님이 "들어가라" 하실 때 들어갔습니다. 그리고 홍수가 끝난 후에도, 노아는 자기 판단으로 나오지 않았습니다.</p>
+
+<div class="scripture">
+<p>하나님이 노아에게 말씀하여 이르시되 너는 네 아내와 네 아들들과 네 며느리들과 함께 방주에서 나오라</p>
+<cite>— 창세기 8:15-16</cite>
+</div>
+
+<p class="body-text">노아는 까마귀도 보내고, 비둘기도 세 번 보냈습니다(창 8:6-12). 물이 마른 것을 직접 확인했습니다. <strong>그런데도 하나님이 "나오라" 하실 때까지 기다렸습니다.</strong></p>
+
+<div class="key-point">
+<p><em>경영학 제5원칙: 진입 타이밍도, 퇴출 타이밍도 하나님께 여쭈십시오. 시장이 "지금이다" 해도 하나님이 "아직이다" 하시면 기다리십시오.</em></p>
+</div>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>사업의 Entry와 Exit 타이밍</h4>
+<ul>
+<li><strong>시장 진입(Entry)</strong>: "모든 사람이 들어갈 때" 들어가면 이미 늦습니다. "아무도 안 들어갈 때" 들어가되, 그 판단의 근거가 하나님의 인도여야 합니다.</li>
+<li><strong>시장 퇴출(Exit)</strong>: 비둘기가 감람나무 잎사귀를 물고 왔을 때(창 8:11) — 회복의 신호는 왔지만, 아직 완전하지 않았습니다. 노아는 <strong>확실한 하나님의 신호</strong>가 올 때까지 기다렸습니다.</li>
+<li><strong>인내의 기간</strong>: 방주 안에서 보낸 시간은 <strong>약 371일</strong>(1년하고 11일)입니다. 위기가 지나가는 데는 생각보다 오래 걸립니다. 조급한 퇴출은 재앙입니다.</li>
+</ul>
+</div>
+
+<div class="highlight">
+<div class="highlight-title">비둘기의 세 번 — 시장 신호 판독법</div>
+<p><strong>1차</strong>: 비둘기가 돌아옴 — 시장이 아직 회복되지 않음. 기다리십시오.<br>
+<strong>2차</strong>: 감람나무 잎사귀를 물고 옴 — 회복의 조짐이 보임. 준비하되 급하게 움직이지 마십시오.<br>
+<strong>3차</strong>: 비둘기가 돌아오지 않음 — 시장이 안정됨. 그러나 최종 확인(하나님의 말씀)을 받은 후 행동하십시오.</p>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 6 -->
+<div class="section" id="ch6">
+<div class="section-num">6</div>
+<div class="section-title">위기 속 리더십 — 폭풍우 아래 방주의 선장</div>
+<div class="section-subtitle">Leadership in Crisis: Captain Under the Storm</div>
+
+<div class="scripture">
+<p>물이 더 많아져 땅 위에 크게 불어나매 방주가 물 위에 떠 다녔으며</p>
+<cite>— 창세기 7:18</cite>
+</div>
+
+<p class="body-text">상상해 보십시오. 밖에서는 전례 없는 폭우가 쏟아집니다. 40일 동안 멈추지 않습니다. 방주 안에는 수천 종의 동물과 8명의 가족이 있습니다. <strong>엔진이 없습니다. 키(방향타)가 없습니다. 노아에게 항해 경험이 없습니다.</strong></p>
+<p class="body-text">그런데 방주는 침몰하지 않았습니다.</p>
+
+<div class="key-point">
+<p><em>왜입니까? 방주의 설계가 완벽했기 때문입니다.</em></p>
+<p>하나님이 주신 규격 — 6:1:0.6 비율, 3층 격벽 구조, 안팎 역청 방수 — 이 설계 자체가 폭풍을 견디도록 만들어진 것입니다. <em>노아의 리더십은 폭풍을 통제하는 것이 아니라, 완벽한 설계 안에 머무르는 것이었습니다.</em></p>
+</div>
+
+<p class="body-text"><strong>위기의 리더는 폭풍을 멈추는 사람이 아닙니다.</strong> 폭풍이 와도 무너지지 않는 구조를 미리 만들어놓은 사람, 그리고 그 구조 안에서 팀을 지키는 사람입니다.</p>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>위기의 CEO — 노아에게서 배우는 5가지</h4>
+<ul>
+<li><strong>위기 전에 시스템을 만드십시오.</strong> 위기가 온 후에 시스템을 만들 수 없습니다. 방주는 비가 오기 전에 완성되었습니다.</li>
+<li><strong>위기 중에 내부를 돌보십시오.</strong> 노아는 폭풍 속에서 바깥을 통제하려 하지 않고, 방주 안의 동물과 가족을 돌봤습니다. CEO는 위기 때 고객 전에 직원을 먼저 돌보십시오.</li>
+<li><strong>키(방향타)가 없는 것을 인정하십시오.</strong> 노아의 방주에는 키가 없었습니다. 방향은 하나님이 잡으셨습니다. 모든 것을 통제할 수 있다는 환상을 버리십시오.</li>
+<li><strong>침묵의 시간을 견디십시오.</strong> 150일간 물이 불어나는 동안, 하나님은 아무 말씀도 하지 않으셨습니다(창 7:24). 응답이 없는 시간에도 흔들리지 마십시오.</li>
+<li><strong>"하나님이 기억하셨다"(창 8:1)</strong> — 150일의 침묵 후, 하나님은 노아를 기억하셨습니다. 잊힌 것이 아닙니다. 응답의 때가 아직 안 된 것입니다.</li>
+</ul>
+</div>
+
+<div class="scripture">
+<p>하나님이 노아와 그와 함께 방주에 있는 모든 들짐승과 모든 가축을 기억하사 하나님이 바람을 땅 위에 불게 하시매 물이 줄어들었고</p>
+<cite>— 창세기 8:1</cite>
+</div>
+
+<div class="prayer">
+<div class="prayer-title">🙏 묵상</div>
+<p>사업의 폭풍 속에서 하나님이 침묵하시는 것 같습니까? 150일의 침묵 후에 "하나님이 기억하셨다"는 말씀을 기억하십시오. 하나님은 잊지 않으셨습니다. 바람을 불어 물을 줄이실 때를 정하고 계십니다.</p>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- CHAPTER 7 -->
+<div class="section" id="ch7">
+<div class="section-num">7</div>
+<div class="section-title">언약 경영 — 위기 이후의 재건</div>
+<div class="section-subtitle">Covenant Management: Rebuilding After Crisis</div>
+
+<div class="scripture">
+<p>노아가 여호와를 위하여 제단을 쌓고 모든 정결한 짐승과 모든 정결한 새 중에서 제물을 취하여 번제로 제단에 드렸더니</p>
+<cite>— 창세기 8:20</cite>
+</div>
+
+<p class="body-text">노아가 방주에서 나와 <strong>가장 먼저 한 일</strong>이 무엇입니까? 새 사업을 시작한 것이 아닙니다. 땅을 확보한 것이 아닙니다. <strong>제단을 쌓고 예배를 드린 것</strong>입니다.</p>
+<p class="body-text">371일간의 위기를 통과한 후, 첫 번째 행동이 감사의 예배였습니다.</p>
+
+<div class="key-point">
+<p><em>경영학 제6원칙: 위기를 통과한 후 가장 먼저 할 일은 다음 사업이 아니라, 감사의 예배입니다. 위기를 통과시켜주신 분을 인정하는 것이 재건의 첫걸음입니다.</em></p>
+</div>
+
+<p class="body-text">그리고 하나님은 노아에게 <strong>언약</strong>을 맺으십니다.</p>
+
+<div class="scripture">
+<p>내가 내 무지개를 구름 속에 두었나니 이것이 나와 세상 사이의 언약의 증거니라</p>
+<cite>— 창세기 9:13</cite>
+</div>
+
+<p class="body-text"><strong>무지개 언약</strong> — 다시는 물로 세상을 멸하지 않겠다는 하나님의 약속. 이것은 일방적 언약입니다. 노아가 지켜야 할 조건이 없습니다. <strong>하나님이 스스로 보증하신 것</strong>입니다.</p>
+
+<div class="biz-insight">
+<div class="biz-tag">🏢 비즈니스 적용</div>
+<h4>위기 이후의 재건 — 언약 경영 5단계</h4>
+<ul>
+<li><strong>1단계: 감사(제단)</strong> — 위기를 통과시켜주신 분을 인정하십시오. 성공을 "내 능력"으로 돌리지 마십시오.</li>
+<li><strong>2단계: 재정립(명령)</strong> — "생육하고 번성하여 땅에 충만하라"(창 9:1). 위기 후에는 새로운 미션 선언이 필요합니다.</li>
+<li><strong>3단계: 원칙 수립(규범)</strong> — 창 9:3-6에서 하나님은 새 시대의 규범을 세우십니다. 위기 후에는 새 규칙이 필요합니다.</li>
+<li><strong>4단계: 보증(무지개)</strong> — 무지개는 고객/파트너에게 주는 신뢰의 증거입니다. "우리는 이 실수를 반복하지 않겠다"는 보증.</li>
+<li><strong>5단계: 전승(세대 연결)</strong> — 노아의 세 아들을 통해 온 세상에 퍼져나갔습니다. 위기의 교훈을 조직 전체에 전승하십시오.</li>
+</ul>
+</div>
+
+<div class="highlight">
+<div class="highlight-title">경영학 제7원칙: 무지개 보증</div>
+<p><strong>무지개는 비가 온 후에만 보입니다.</strong> 비(위기)가 없으면 무지개(언약)도 없습니다. 위기를 통과한 기업만이 시장에 보여줄 <strong>신뢰의 무지개</strong>가 있습니다. 위기를 숨기지 마십시오. 위기를 통과한 경험이 곧 기업의 가장 강력한 브랜드입니다.</p>
+</div>
+</div>
+
+<div class="sep">⚓ ⚓ ⚓</div>
+
+<!-- EPILOGUE -->
+<div class="section" id="closing">
+<div class="section-title">노아의 방주 경영학 — 7대 공식 종합</div>
+<div class="section-subtitle">에필로그 — 당신의 방주를 지으십시오</div>
+
+<div class="action-card">
+<h3>⚓ 노아의 방주 경영학 — 7대 원칙</h3>
+<div class="action-item"><div class="action-num">1</div><div><div class="action-item-title">위기 감지의 원칙</div><div class="action-item-desc">위기는 시장이 알려주지 않습니다. 하나님과 동행하는 자만이 시대를 읽습니다. — 창 6:5-9</div></div></div>
+<div class="action-item"><div class="action-num">2</div><div><div class="action-item-title">규격 경영의 원칙</div><div class="action-item-desc">비전만 있고 규격이 없으면 몽상입니다. 비전도 실행 설계도도 하나님께 받으십시오. — 창 6:14-16</div></div></div>
+<div class="action-item"><div class="action-num">3</div><div><div class="action-item-title">장기 프로젝트의 원칙</div><div class="action-item-desc">120년을 흔들림 없이. 중간 성과가 없어도 과정의 품질을 타협하지 마십시오. — 창 6:22</div></div></div>
+<div class="action-item"><div class="action-num">4</div><div><div class="action-item-title">리스크 관리의 원칙</div><div class="action-item-desc">핵심 자산의 이중화, 위험 격리, 비상 자금. 홍수 후에 방주를 지을 수는 없습니다. — 창 6:19-21</div></div></div>
+<div class="action-item"><div class="action-num">5</div><div><div class="action-item-title">때의 경영 원칙</div><div class="action-item-desc">진입도, 퇴출도 하나님께 여쭈십시오. 비둘기의 세 번처럼 인내하며 확인하십시오. — 창 8:6-16</div></div></div>
+<div class="action-item"><div class="action-num">6</div><div><div class="action-item-title">위기 리더십의 원칙</div><div class="action-item-desc">폭풍을 통제하려 하지 마십시오. 완벽한 설계 안에 머무르며 내부를 돌보십시오. — 창 8:1</div></div></div>
+<div class="action-item"><div class="action-num">7</div><div><div class="action-item-title">언약 경영의 원칙</div><div class="action-item-desc">위기 통과 후 첫 번째는 감사의 예배. 무지개 보증을 세상에 보이십시오. — 창 9:13</div></div></div>
+</div>
+
+<table class="formula-table">
+<thead><tr><th>원칙</th><th>성경 (창세기)</th><th>노아의 실행</th><th>오늘의 비즈니스 적용</th></tr></thead>
+<tbody>
+<tr><td><strong>1. 위기 감지</strong></td><td>6:5-9</td><td>시대의 타락을 읽고 준비 시작</td><td>하나님과의 동행으로 시장 변곡점 감지</td></tr>
+<tr><td><strong>2. 규격 경영</strong></td><td>6:14-16</td><td>하나님의 설계도대로 정확히 건조</td><td>비전 + SOP + 품질 기준 확립</td></tr>
+<tr><td><strong>3. 장기 프로젝트</strong></td><td>6:22</td><td>120년간 흔들림 없이 실행</td><td>시장의 박수가 아닌 하나님의 평가 기준</td></tr>
+<tr><td><strong>4. 리스크 관리</strong></td><td>6:19-21</td><td>종류별 보존, 양식 비축, 격벽 구조</td><td>BCP, 자산 이중화, 비상 자금</td></tr>
+<tr><td><strong>5. 때의 경영</strong></td><td>7:1, 8:15</td><td>들어갈 때와 나올 때를 하나님께 여쭘</td><td>시장 진입/퇴출 타이밍의 영적 분별</td></tr>
+<tr><td><strong>6. 위기 리더십</strong></td><td>7:18, 8:1</td><td>키 없는 방주에서 150일의 침묵을 견딤</td><td>통제 환상 내려놓기, 내부 돌봄</td></tr>
+<tr><td><strong>7. 언약 경영</strong></td><td>8:20, 9:13</td><td>제단 → 명령 → 규범 → 무지개</td><td>감사 → 재정립 → 원칙 → 신뢰 보증</td></tr>
+</tbody>
+</table>
+
+<div class="prayer">
+<div class="prayer-title">🙏 결단의 기도</div>
+<p>"주님, 저의 사업에도 방주를 짓게 하소서.<br>위기를 감지하는 눈을 주시고, 규격을 따르는 순종을 주시고,<br>120년의 인내를 주시고, 리스크를 관리하는 지혜를 주시고,<br>때를 아는 분별력을 주시고, 폭풍 속에서 내부를 돌보는 리더십을 주시고,<br>위기 이후 감사의 제단을 쌓는 겸손을 주소서.<br>내 사업의 설계자는 주님이시고, 방향타를 잡으시는 분도 주님이십니다. 아멘."</p>
+</div>
+
+<p class="body-text" style="font-family:'Nanum Myeongjo',serif;font-size:1.05rem;font-weight:700;color:var(--sea);text-align:center;margin-top:2.5rem;line-height:2.2">
+김해한마음지회 회원 여러분,<br>
+<span style="color:var(--ark2)">당신의 방주를 지금 시작하십시오.</span><br>
+비가 오기 전에 방주를 지은 노아처럼,<br>
+위기가 오기 전에 하나님의 설계도대로 사업을 세우십시오.<br><br>
+<span style="color:var(--gl)">모듈 01에서 므두셀라의 신호를 감지했습니다.<br>
+모듈 02에서 노아의 방주를 설계했습니다.<br>
+모듈 03에서는 아브라함의 협상론을 배웁니다.</span>
+</p>
+</div>
+</div>
+
+<!-- Footer -->
+<div class="footer-cta">
+<p>CBMC 비즈니스 원칙 시리즈 · 글로컬 AI 아카데미 정규 커리큘럼</p>
+<div class="footer-nav">
+<a href="methuselah-sermon.html" class="nav-prev">← 모듈 01 므두셀라의 공식</a>
+<a href="index.html#resources" class="nav-home">📚 자료실로 돌아가기</a>
+</div>
+<div class="copy">© 2026 CBMC 김해한마음지회 · 사단법인 한국기독실업인회 · 글로컬 AI 아카데미</div>
+</div>
+
+<script>
+function sTo(id){
+const el=document.getElementById(id);
+if(el){window.scrollTo({top:el.offsetTop-120,behavior:'smooth'})}
+document.querySelectorAll('.toc-btn').forEach(b=>b.classList.remove('active'));
+if(event&&event.target)event.target.classList.add('active');
+}
+const secs=['opening','ch1','ch2','ch3','ch4','ch5','ch6','ch7','closing'];
+const tBtns=document.querySelectorAll('.toc-btn');
+window.addEventListener('scroll',()=>{
+const sy=window.pageYOffset+150;let cur='opening';
+secs.forEach(id=>{const el=document.getElementById(id);if(el&&el.offsetTop<=sy)cur=id;});
+const idx=secs.indexOf(cur);
+tBtns.forEach((b,i)=>b.classList.toggle('active',i===idx));
+});
+const obs=new IntersectionObserver(entries=>{
+entries.forEach(e=>{if(e.isIntersecting)e.target.style.animationPlayState='running';});
+},{threshold:0.1});
+document.querySelectorAll('.section').forEach(s=>{s.style.animationPlayState='paused';obs.observe(s);});
+</script>
+</body>
+</html>
