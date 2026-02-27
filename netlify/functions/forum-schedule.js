@@ -19,7 +19,7 @@ const FALLBACK_DATA = [
   },
   {
     id: "310edb42-7c02-81fd-9e1b-e9fe0b66d67f",
-    title: "조찬주회 — 임성택 한의학박사",
+    title: "한의학적 암치료법",
     date: "2026-02-28",
     speaker: "임성택 한의학박사 (자연힐 한방병원 병원장)",
     scripture: "",
@@ -28,7 +28,7 @@ const FALLBACK_DATA = [
     youtube5: "",
     youtube2: "",
     pdf: "",
-    summary: "건강과 비즈니스"
+    summary: "한의학적 암치료법 — 임성택 한의학박사"
   },
   {
     id: "30dedb42-7c02-8113-b6a2-cf701609ffa4",
